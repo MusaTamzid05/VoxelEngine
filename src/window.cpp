@@ -2,6 +2,7 @@
 #include <iostream>
 #include "headers.h"
 #include "consts.h"
+#include "shader.h"
 
 
 
@@ -14,6 +15,8 @@ Window::Window(const std::string& title):m_running(false) {
         std::cerr << "Could not init glew\n";
         exit(1);
     }
+
+    Shader* shader = new Shader("../shaders/triangle.vs", "../shaders/triangle.fs");
 
 
 }

@@ -9,6 +9,7 @@ SET(SOURCE_FILES
     src/main.cpp
     src/window.cpp
     src/utils.cpp
+    src/shader.cpp
     )
 
 
