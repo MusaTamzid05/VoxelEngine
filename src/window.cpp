@@ -1,0 +1,66 @@
+#include "window.h"
+#include <iostream>
+#include "headers.h"
+#include "consts.h"
+
+
+
+Window::Window(const std::string& title):m_running(false) {
+    std::cout << "Window class\n";
+
+    m_window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), title);
+    GLenum err = glewInit();
+
+    if(err != GLEW_OK) {
+        std::cerr << "Could not init glew\n";
+        exit(1);
+    }
+
+
+}
+
+Window::~Window() {
+
+}
+
+void Window::run() {
+    m_running = true;
+
+    while(m_running) {
+        handle_event();
+        render();
+        update();
+
+    }
+
+}
+
+void Window::handle_event() {
+    sf::Event event;
+
+    while(m_window->pollEvent(event)) {
+        if(event.type == sf::Event::Closed)
+            m_running = false;
+
+        if(event.type == sf::Event::KeyPressed)
+            if(event.key.code == sf::Keyboard::Escape)
+            m_running = false;
+
+
+    }
+
+}
+
+
+void Window::render() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+    m_window->display();
+
+}
+
+
+void Window::update() {
+
+}
