@@ -2,7 +2,7 @@
 #include <iostream>
 #include "headers.h"
 #include "consts.h"
-#include "shader.h"
+#include "triangle.h"
 
 
 
@@ -15,8 +15,9 @@ Window::Window(const std::string& title):m_running(false) {
         std::cerr << "Could not init glew\n";
         exit(1);
     }
+    
 
-    Shader* shader = new Shader("../shaders/triangle.vs", "../shaders/triangle.fs");
+    m_triangle = new Triangle();
 
 
 }
@@ -60,6 +61,8 @@ void Window::handle_event() {
 void Window::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+    m_triangle->render();
 
     m_window->display();
 

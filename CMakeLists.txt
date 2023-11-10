@@ -10,6 +10,7 @@ SET(SOURCE_FILES
     src/window.cpp
     src/utils.cpp
     src/shader.cpp
+    src/triangle.cpp
     )
 
 

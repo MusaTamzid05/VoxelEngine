@@ -8,6 +8,8 @@ namespace sf {
 
 #include <string>
 
+struct Triangle;
+
 struct Window {
     Window(const std::string& title="Window");
     virtual ~Window();
@@ -20,6 +22,7 @@ struct Window {
 
 
     sf::RenderWindow* m_window;
+    Triangle* m_triangle;
     bool m_running;
 
 
