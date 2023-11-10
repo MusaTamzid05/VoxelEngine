@@ -6,7 +6,6 @@
 
 
 Window::Window(const std::string& title):m_running(false) {
-    std::cout << "Window class\n";
 
     m_window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), title);
     GLenum err = glewInit();
@@ -20,6 +19,7 @@ Window::Window(const std::string& title):m_running(false) {
 }
 
 Window::~Window() {
+    delete m_window;
 
 }
 
@@ -32,6 +32,8 @@ void Window::run() {
         update();
 
     }
+
+    m_window->close();
 
 }
 
