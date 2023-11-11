@@ -18,7 +18,7 @@ struct Window {
 
     void handle_event();
     void render();
-    void update();
+    void update(float delta_time);
 
 
     sf::RenderWindow* m_window;

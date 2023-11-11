@@ -30,10 +30,24 @@ Window::~Window() {
 void Window::run() {
     m_running = true;
 
+
+    sf::Clock clock;
+    sf::Time frame_per_seconds = sf::seconds(1.0f / 60.0f);
+    sf::Time time_since_last_frame = sf::Time::Zero;
+
+
     while(m_running) {
-        handle_event();
+        sf::Time elased_time = clock.restart();
+        time_since_last_frame += elased_time;
+
+        while(time_since_last_frame > frame_per_seconds) {
+            handle_event();
+            update(frame_per_seconds.asSeconds());
+            time_since_last_frame -= frame_per_seconds;
+
+        }
+
         render();
-        update();
 
     }
 
@@ -69,6 +83,7 @@ void Window::render() {
 }
 
 
-void Window::update() {
+void Window::update(float delta_time) {
+    std::cout << delta_time << "\n";
 
 }
