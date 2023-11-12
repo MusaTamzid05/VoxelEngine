@@ -1,6 +1,7 @@
 #include "triangle.h"
 #include "shader.h"
 #include "headers.h"
+#include "camera.h"
 #include <vector>
 
 
@@ -10,9 +11,9 @@ Triangle::Triangle() {
     // mesh initialization
 
     std::vector<float> vertices({
-            -1.0f, -1.0f, 0.0f, // bottom left
-             0.0f, 1.0f, 0.0f, // top right 
-             1.0f, -1.0f, 0.0f, // bottom left
+            -1.0f, -1.0f, 0.0f, 
+             1.0f, -1.0f, 0.0f, 
+             0.0f, 1.0f, 0.0f, 
             });
 
     std::vector<unsigned int> indices({
@@ -45,7 +46,14 @@ Triangle::Triangle() {
 
     glBindVertexArray(0);
 
+    m_shader->use();
+
+    glm::mat4 projection = Camera::get_instance()->get_projection();
+    m_shader->set_mat4("projection", projection);
+
+
     
+
 
 
 }
@@ -61,6 +69,18 @@ void Triangle::render() {
     m_shader->use();
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+
+
+}
+
+void Triangle::update() {
+    m_shader->use();
+    glm::mat4 view = Camera::get_instance()->get_view();
+    m_shader->set_mat4("view", view);
+
+    glm::mat4 model = glm::mat4(1.0);
+    model = glm::translate(model, glm::vec3(0.0f));
+    m_shader->set_mat4("model", model);
 
 
 }

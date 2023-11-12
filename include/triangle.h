@@ -8,6 +8,7 @@ struct Triangle {
     virtual ~Triangle();
 
     void render();
+    void update();
 
     unsigned int VAO;
     unsigned int VBO;

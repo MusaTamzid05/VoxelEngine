@@ -3,6 +3,7 @@
 #include "headers.h"
 #include "consts.h"
 #include "triangle.h"
+#include "camera.h"
 
 
 
@@ -18,6 +19,7 @@ Window::Window(const std::string& title):m_running(false) {
     
 
     m_triangle = new Triangle();
+    Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 0.3f));
 
 
 }
@@ -84,6 +86,7 @@ void Window::render() {
 
 
 void Window::update(float delta_time) {
-    std::cout << delta_time << "\n";
+    Camera::get_instance()->update_camera_vectors();
+    m_triangle->update();
 
 }
