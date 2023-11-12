@@ -3,6 +3,8 @@
 #include "headers.h"
 #include "camera.h"
 #include <vector>
+#include <iostream>
+//#include <glm/gtx/string_cast.hpp>
 
 
 Triangle::Triangle() {
@@ -47,7 +49,6 @@ Triangle::Triangle() {
     glBindVertexArray(0);
 
     m_shader->use();
-
     glm::mat4 projection = Camera::get_instance()->get_projection();
     m_shader->set_mat4("projection", projection);
 
@@ -75,6 +76,7 @@ void Triangle::render() {
 
 void Triangle::update() {
     m_shader->use();
+
     glm::mat4 view = Camera::get_instance()->get_view();
     m_shader->set_mat4("view", view);
 

@@ -16,7 +16,7 @@ struct Window {
 
     void run();
 
-    void handle_event();
+    void handle_event(float delta_time);
     void render();
     void update(float delta_time);
 

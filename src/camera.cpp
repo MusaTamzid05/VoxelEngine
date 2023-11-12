@@ -1,6 +1,7 @@
 #include "camera.h"
 #include "consts.h"
 #include <cmath>
+#include <iostream>
 
 
 Camera* Camera::m_instance = nullptr;
