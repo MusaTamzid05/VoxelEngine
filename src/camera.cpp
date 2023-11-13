@@ -14,6 +14,7 @@ Camera::Camera() {
     m_pitch = 0.0f;
     zoom = 45.0f;
     m_speed = 2.5f;
+    m_sensitivity = 0.1f;
 
 }
 
@@ -73,6 +74,22 @@ void Camera::handle_keyboard(const Direction& direction, float delta_time) {
 
     if(direction == Direction::Right)
         m_position += m_right * velocity;
+
+
+}
+
+void Camera::handle_mouse_movement(float x_offset, float y_offset) {
+    x_offset *= m_sensitivity;
+    y_offset *= m_sensitivity;
+
+    m_yaw += x_offset;
+    m_pitch += y_offset;
+
+    if(m_pitch > 89.0f)
+        m_pitch = 89.0f;
+    else if(m_pitch < -89.0f)
+        m_pitch = -89.0f;
+
 
 
 }

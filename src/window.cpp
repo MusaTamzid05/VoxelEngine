@@ -24,6 +24,7 @@ Window::Window(const std::string& title):m_running(false) {
 
     m_triangle = new Triangle();
     Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
+    first_mouse_move = true;
 
 
 }
@@ -87,6 +88,27 @@ void Window::handle_event(float delta_time) {
             if(event.key.code == sf::Keyboard::D) 
                 Camera::get_instance()->handle_keyboard(Camera::Direction::Right, delta_time);
             
+
+        }
+
+        if(event.type == sf::Event::MouseMoved) {
+            sf::Vector2i mouse_position =  sf::Mouse::getPosition();
+            float mouse_pos_x = (float)mouse_position.x;
+            float mouse_pos_y = (float)mouse_position.y;
+
+            if(first_mouse_move) {
+                last_mouse_x = mouse_pos_x;
+                last_mouse_y = mouse_pos_y;
+                first_mouse_move = false;
+            }
+
+            float x_offset = mouse_pos_x - last_mouse_x;
+            float y_offset = last_mouse_y - mouse_pos_y;
+
+            last_mouse_x = mouse_pos_x;
+            last_mouse_y = mouse_pos_y;
+
+            Camera::get_instance()->handle_mouse_movement(x_offset, y_offset);
 
         }
 

@@ -25,6 +25,10 @@ struct Window {
     Triangle* m_triangle;
     bool m_running;
 
+    bool first_mouse_move;
+    float last_mouse_x;
+    float last_mouse_y;
+
 
 };
 

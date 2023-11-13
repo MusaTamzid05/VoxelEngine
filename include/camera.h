@@ -27,6 +27,7 @@ class Camera {
         glm::mat4 get_view() const;
 
         void handle_keyboard(const Direction& direction, float delta_time);
+        void handle_mouse_movement(float x_offset, float y_offset);
 
 
     private:
@@ -41,6 +42,7 @@ class Camera {
         float m_yaw;
         float m_pitch;
         float m_speed;
+        float m_sensitivity;
 
         static Camera* m_instance;
 
