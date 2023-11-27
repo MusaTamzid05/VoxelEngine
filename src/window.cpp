@@ -112,6 +112,9 @@ void Window::handle_event(float delta_time) {
 
         }
 
+        if(event.type == sf::Event::MouseLeft)
+            first_mouse_move = true;
+
 
     }
 
