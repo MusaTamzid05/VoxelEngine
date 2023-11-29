@@ -20,8 +20,11 @@ class Camera {
 
         void init(const glm::vec3& position);
         void update_camera_vectors();
+        void update_camera_movement_flag();
+        bool camera_moved;
 
         float zoom;
+
 
         static Camera* get_instance();
 
@@ -45,6 +48,9 @@ class Camera {
         float m_pitch;
         float m_speed;
         float m_sensitivity;
+
+        bool m_camera_position_changed;
+        bool m_camera_angle_changed;
 
         static Camera* m_instance;
 

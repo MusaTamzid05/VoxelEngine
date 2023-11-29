@@ -16,6 +16,12 @@ Camera::Camera() {
     m_speed = 20.f;
     m_sensitivity = 0.1f;
 
+    camera_moved = false;
+    m_camera_position_changed = true; // for first frame we want to 
+                                      // render so we set camera movement to true
+    m_camera_angle_changed = false;
+
+
 }
 
 void Camera::init(const glm::vec3& position) {
@@ -33,6 +39,19 @@ void Camera::update_camera_vectors() {
 
     m_right = glm::normalize(glm::cross(m_front, m_world_up));
     m_up = glm::normalize(glm::cross(m_right, m_front));
+
+}
+
+
+void Camera::update_camera_movement_flag() {
+    if(m_camera_position_changed || m_camera_angle_changed) {
+        camera_moved = true;
+        m_camera_angle_changed = false;
+        m_camera_position_changed = false;
+
+    }
+    else 
+        camera_moved = false;
 
 }
 
@@ -81,6 +100,8 @@ void Camera::handle_keyboard(const Direction& direction, float delta_time) {
     if(direction == Direction::Down)
         m_position -= m_up * velocity;
 
+    m_camera_position_changed = true;
+
 
 }
 
@@ -95,6 +116,9 @@ void Camera::handle_mouse_movement(float x_offset, float y_offset) {
         m_pitch = 89.0f;
     else if(m_pitch < -89.0f)
         m_pitch = -89.0f;
+
+
+    m_camera_angle_changed = true;
 
 
 

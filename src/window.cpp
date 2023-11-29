@@ -60,6 +60,7 @@ Window::Window(const std::string& title):m_running(false) {
     m_chunk = new Chunk();
 
 
+
 }
 
 Window::~Window() {
@@ -161,6 +162,13 @@ void Window::handle_event(float delta_time) {
 
 
 void Window::render() {
+
+    if(!Camera::get_instance()->camera_moved)
+        return;
+
+    
+
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
@@ -173,4 +181,5 @@ void Window::render() {
 
 void Window::update(float delta_time) {
     Camera::get_instance()->update_camera_vectors();
+    Camera::get_instance()->update_camera_movement_flag();
 }
