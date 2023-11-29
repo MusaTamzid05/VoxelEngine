@@ -13,7 +13,7 @@ Camera::Camera() {
     m_yaw = -120.0f;
     m_pitch = -10.0f;
     zoom = 45.0f;
-    m_speed = 2.5f;
+    m_speed = 20.f;
     m_sensitivity = 0.1f;
 
 }
