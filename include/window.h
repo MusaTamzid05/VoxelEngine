@@ -3,12 +3,13 @@
 
 
 namespace sf {
-    class RenderWindow;
+    class Window;
 };
 
 #include <string>
 
-struct Triangle;
+struct Renderer;
+struct Block;
 
 struct Window {
     Window(const std::string& title="Window");
@@ -21,13 +22,15 @@ struct Window {
     void update(float delta_time);
 
 
-    sf::RenderWindow* m_window;
-    Triangle* m_triangle;
+    sf::Window* m_window;
     bool m_running;
 
     bool first_mouse_move;
     float last_mouse_x;
     float last_mouse_y;
+
+    Renderer* m_renderer;
+    Block* m_block;
 
 
 };

@@ -12,6 +12,8 @@ SET(SOURCE_FILES
     src/shader.cpp
     src/triangle.cpp
     src/camera.cpp
+    src/renderer.cpp
+    src/block.cpp
     )
 
 

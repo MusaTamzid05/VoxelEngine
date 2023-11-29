@@ -2,14 +2,24 @@
 #include <iostream>
 #include "headers.h"
 #include "consts.h"
-#include "triangle.h"
+#include "renderer.h"
+#include "block.h"
+
 #include "camera.h"
 
 
 
 Window::Window(const std::string& title):m_running(false) {
 
-    m_window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), title);
+    sf::ContextSettings settings;
+    settings.depthBits = 24;
+    settings.stencilBits = 8;
+    settings.antialiasingLevel = 4;
+    settings.majorVersion = 3;
+    settings.minorVersion = 0;
+
+
+    m_window = new sf::Window(sf::VideoMode(WIDTH, HEIGHT), title, sf::Style::Default, settings);
     GLenum err = glewInit();
 
     if(err != GLEW_OK) {
@@ -22,9 +32,11 @@ Window::Window(const std::string& title):m_running(false) {
     glEnable(GL_DEPTH_TEST);
     
 
-    m_triangle = new Triangle();
     Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
     first_mouse_move = true;
+
+    m_renderer = new Renderer();
+    m_block = new Block(glm::vec3(0.0f));
 
 
 }
@@ -131,7 +143,8 @@ void Window::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-    m_triangle->render();
+    m_renderer->bind_block_render();
+    m_block->render(m_renderer->m_block_shader);
     m_window->display();
 
 }
@@ -139,5 +152,4 @@ void Window::render() {
 
 void Window::update(float delta_time) {
     Camera::get_instance()->update_camera_vectors();
-    m_triangle->update();
 }
