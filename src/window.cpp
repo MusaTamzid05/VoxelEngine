@@ -56,7 +56,10 @@ Window::Window(const std::string& title):m_running(false) {
         std::cout << texture_path << " loaded\n";
 
     m_renderer = new Renderer();
-    m_block = new Block(glm::vec3(0.0f));
+    m_block = new Block(
+            glm::vec3(0.0f),
+            TextureManager::get_instance()->m_shader_map[TextureManager::Type::Grass]
+            );
 
 
 }

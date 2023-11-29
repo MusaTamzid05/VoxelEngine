@@ -82,10 +82,12 @@ Renderer::Renderer():
         glm::mat4 projection = Camera::get_instance()->get_projection();
         m_block_shader->set_mat4("projection", projection);
 
-        for(int i = 0; i < TextureManager::get_instance()->m_maps.size(); i += 1) {
-            std::string type_name = "texture" + std::to_string(i);
-            m_block_shader->set_int(type_name, i);
 
+
+        for(auto shader_data :  TextureManager::get_instance()->m_shader_map) {
+            unsigned int index = shader_data.second;
+            std::string type_name = "texture" + std::to_string(index);
+            m_block_shader->set_int(type_name, index);
         }
 
         grass_texture_id = TextureManager::get_instance()->get_texture(

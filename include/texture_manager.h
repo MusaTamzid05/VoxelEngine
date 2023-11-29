@@ -19,6 +19,7 @@ class TextureManager {
         unsigned int get_texture(const Type& type) const;
 
         std::map<Type, unsigned int> m_maps;
+        std::map<Type, unsigned int> m_shader_map; // texture id used in shader
 
     private:
 

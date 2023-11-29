@@ -71,6 +71,7 @@ bool TextureManager::add(const Type& type, const std::string& path) {
 
     stbi_image_free(data);
     m_maps[type] = texture_id;
+    m_shader_map[type] = m_shader_map.size();
 
     return true;
         
