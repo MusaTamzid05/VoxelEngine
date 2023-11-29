@@ -14,6 +14,9 @@ struct Renderer {
 
     Shader* m_block_shader;
 
+    unsigned int grass_texture_id;
+    unsigned int farmland_texture_id;
+
 
 
 

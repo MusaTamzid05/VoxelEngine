@@ -2,6 +2,7 @@
 #include "shader.h"
 #include "headers.h"
 #include "camera.h"
+#include "texture_manager.h"
 #include <vector>
 
 Renderer::Renderer():
@@ -81,6 +82,19 @@ Renderer::Renderer():
         glm::mat4 projection = Camera::get_instance()->get_projection();
         m_block_shader->set_mat4("projection", projection);
 
+        for(int i = 0; i < TextureManager::get_instance()->m_maps.size(); i += 1) {
+            std::string type_name = "texture" + std::to_string(i);
+            m_block_shader->set_int(type_name, i);
+
+        }
+
+        grass_texture_id = TextureManager::get_instance()->get_texture(
+                TextureManager::Type::Grass
+                );
+        farmland_texture_id = TextureManager::get_instance()->get_texture(
+                TextureManager::Type::Farmland
+                );
+
 
 
 
@@ -96,6 +110,12 @@ void Renderer::bind_block_render() {
     m_block_shader->use();
     glm::mat4 view = Camera::get_instance()->get_view();
     m_block_shader->set_mat4("view", view);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, grass_texture_id);
+
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, farmland_texture_id);
 
     glBindVertexArray(m_block_VAO);
 

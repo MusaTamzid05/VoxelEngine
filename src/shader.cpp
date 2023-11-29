@@ -90,3 +90,8 @@ void Shader::set_mat4(const std::string& name, glm::mat4& mat) {
 
 
 }
+
+
+void Shader::set_int(const std::string& name, int value) {
+    glUniform1i(glGetUniformLocation(id, name.c_str()), value);
+}

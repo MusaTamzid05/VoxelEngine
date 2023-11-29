@@ -13,6 +13,7 @@ struct Shader {
     void use();
 
     void set_mat4(const std::string& name, glm::mat4& mat);
+    void set_int(const std::string& name, int value);
 
     unsigned int id;
 };

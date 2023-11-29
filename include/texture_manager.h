@@ -18,12 +18,13 @@ class TextureManager {
         bool add(const Type& type, const std::string& path);
         unsigned int get_texture(const Type& type) const;
 
+        std::map<Type, unsigned int> m_maps;
+
     private:
 
         TextureManager();
         static TextureManager* m_instance;
 
-        std::map<Type, unsigned int> m_maps;
 
 
 
