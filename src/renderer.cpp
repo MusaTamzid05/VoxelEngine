@@ -84,7 +84,7 @@ Renderer::Renderer():
 
 
 
-        for(auto shader_data :  TextureManager::get_instance()->m_shader_map) {
+        for(auto shader_data :  TextureManager::get_instance()->shader_map) {
             unsigned int index = shader_data.second;
             std::string type_name = "texture" + std::to_string(index);
             m_block_shader->set_int(type_name, index);

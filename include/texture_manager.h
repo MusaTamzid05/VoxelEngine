@@ -18,8 +18,8 @@ class TextureManager {
         bool add(const Type& type, const std::string& path);
         unsigned int get_texture(const Type& type) const;
 
-        std::map<Type, unsigned int> m_maps;
-        std::map<Type, unsigned int> m_shader_map; // texture id used in shader
+        std::map<Type, unsigned int> maps;
+        std::map<Type, unsigned int> shader_map; // texture id used in shader
 
     private:
 

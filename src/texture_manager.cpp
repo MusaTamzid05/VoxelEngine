@@ -70,8 +70,8 @@ bool TextureManager::add(const Type& type, const std::string& path) {
         return false;
 
     stbi_image_free(data);
-    m_maps[type] = texture_id;
-    m_shader_map[type] = m_shader_map.size();
+    maps[type] = texture_id;
+    shader_map[type] = shader_map.size();
 
     return true;
         
@@ -80,9 +80,9 @@ bool TextureManager::add(const Type& type, const std::string& path) {
 }
 
 unsigned int TextureManager::get_texture(const Type& type) const {
-    auto target = m_maps.find(type);
+    auto target = maps.find(type);
 
-    if(target == m_maps.end()) {
+    if(target == maps.end()) {
         std::cerr << "Could not load texture type " << type << "\n";
         return -1;
 
