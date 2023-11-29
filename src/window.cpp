@@ -3,7 +3,7 @@
 #include "headers.h"
 #include "consts.h"
 #include "renderer.h"
-#include "block.h"
+#include "chunk.h"
 
 #include "camera.h"
 #include "texture_manager.h"
@@ -33,7 +33,8 @@ Window::Window(const std::string& title):m_running(false) {
     glEnable(GL_DEPTH_TEST);
     
 
-    Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
+    //Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
+    Camera::get_instance()->init(glm::vec3(16.0f, 5.3f, 25.0f));
     first_mouse_move = true;
 
     std::string texture_path = "../resources/green_concrete_powder.png";
@@ -56,10 +57,7 @@ Window::Window(const std::string& title):m_running(false) {
         std::cout << texture_path << " loaded\n";
 
     m_renderer = new Renderer();
-    m_block = new Block(
-            glm::vec3(0.0f),
-            TextureManager::get_instance()->m_shader_map[TextureManager::Type::Grass]
-            );
+    m_chunk = new Chunk();
 
 
 }
@@ -167,7 +165,7 @@ void Window::render() {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
     m_renderer->bind_block_render();
-    m_block->render(m_renderer->m_block_shader);
+    m_chunk->render(m_renderer->m_block_shader);
     m_window->display();
 
 }

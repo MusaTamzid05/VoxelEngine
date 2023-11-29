@@ -9,7 +9,7 @@ namespace sf {
 #include <string>
 
 struct Renderer;
-struct Block;
+struct Chunk;
 
 struct Window {
     Window(const std::string& title="Window");
@@ -30,7 +30,7 @@ struct Window {
     float last_mouse_y;
 
     Renderer* m_renderer;
-    Block* m_block;
+    Chunk * m_chunk;
 
 
 };

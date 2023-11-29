@@ -10,8 +10,8 @@ Camera::Camera() {
     m_world_up = glm::vec3(0.0f, 1.0f, 0.0f);
     m_front = glm::vec3(0.0f, 0.0f, -1.0f);
     m_up = glm::vec3(0.0f, 0.0f, 0.0f);
-    m_yaw = -90.0f;
-    m_pitch = 0.0f;
+    m_yaw = -120.0f;
+    m_pitch = -10.0f;
     zoom = 45.0f;
     m_speed = 2.5f;
     m_sensitivity = 0.1f;
@@ -48,8 +48,8 @@ glm::mat4 Camera::get_projection() const {
     return glm::perspective(
             glm::radians(zoom),
             (float) WIDTH / (float) HEIGHT,
-            0.01f,
-            10.0f
+            0.1f,
+            100.0f
             );
 
 }
