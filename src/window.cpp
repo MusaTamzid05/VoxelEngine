@@ -6,6 +6,7 @@
 #include "block.h"
 
 #include "camera.h"
+#include "texture_manager.h"
 
 
 
@@ -34,6 +35,25 @@ Window::Window(const std::string& title):m_running(false) {
 
     Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
     first_mouse_move = true;
+
+    std::string texture_path = "../resources/green_concrete_powder.png";
+
+    if(!TextureManager::get_instance()->add(
+            TextureManager::Type::Grass, 
+            texture_path))
+        std::cerr << "Could not load " << texture_path << "\n";
+    else
+        std::cout << texture_path << " loaded\n";
+
+
+    texture_path = "../resources/farmland.png";
+
+    if(!TextureManager::get_instance()->add(
+            TextureManager::Type::Farmland, 
+            texture_path))
+        std::cerr << "Could not load " << texture_path << "\n";
+    else
+        std::cout << texture_path << " loaded\n";
 
     m_renderer = new Renderer();
     m_block = new Block(glm::vec3(0.0f));
