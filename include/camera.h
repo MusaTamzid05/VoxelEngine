@@ -11,7 +11,9 @@ class Camera {
             Forward,
             Backward,
             Left,
-            Right
+            Right,
+            Up,
+            Down
 
         };
         virtual ~Camera() {}

@@ -75,6 +75,12 @@ void Camera::handle_keyboard(const Direction& direction, float delta_time) {
     if(direction == Direction::Right)
         m_position += m_right * velocity;
 
+    if(direction == Direction::Up)
+        m_position += m_up * velocity;
+
+    if(direction == Direction::Down)
+        m_position -= m_up * velocity;
+
 
 }
 

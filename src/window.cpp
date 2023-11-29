@@ -87,6 +87,12 @@ void Window::handle_event(float delta_time) {
 
             if(event.key.code == sf::Keyboard::D) 
                 Camera::get_instance()->handle_keyboard(Camera::Direction::Right, delta_time);
+
+            if(event.key.code == sf::Keyboard::Up) 
+                Camera::get_instance()->handle_keyboard(Camera::Direction::Up, delta_time);
+
+            if(event.key.code == sf::Keyboard::Down) 
+                Camera::get_instance()->handle_keyboard(Camera::Direction::Down, delta_time);
             
 
         }
