@@ -10,6 +10,7 @@ namespace sf {
 
 struct Renderer;
 struct Chunk;
+struct Light;
 
 struct Window {
     Window(const std::string& title="Window");
@@ -30,7 +31,8 @@ struct Window {
     float last_mouse_y;
 
     Renderer* m_renderer;
-    Chunk * m_chunk;
+    Chunk* m_chunk;
+    Light* m_light;
 
 
 

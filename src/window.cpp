@@ -7,6 +7,7 @@
 
 #include "camera.h"
 #include "texture_manager.h"
+#include "light.h"
 
 
 
@@ -58,6 +59,7 @@ Window::Window(const std::string& title):m_running(false) {
 
     m_renderer = new Renderer();
     m_chunk = new Chunk();
+    m_light = new Light(glm::vec3(10.0f, 3.0f, 10.0f));
 
 
 
@@ -174,6 +176,10 @@ void Window::render() {
 
     m_renderer->bind_block_render();
     m_chunk->render(m_renderer->m_block_shader);
+
+    m_renderer->bind_light_render();
+    m_light->render(m_renderer->m_light_shader);
+
     m_window->display();
 
 }
