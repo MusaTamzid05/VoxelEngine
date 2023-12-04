@@ -34,6 +34,8 @@ class Camera {
         void handle_keyboard(const Direction& direction, float delta_time);
         void handle_mouse_movement(float x_offset, float y_offset);
 
+        glm::vec3 get_position() const;
+
 
     private:
         Camera();

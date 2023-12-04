@@ -123,3 +123,8 @@ void Camera::handle_mouse_movement(float x_offset, float y_offset) {
 
 
 }
+
+
+glm::vec3 Camera::get_position() const {
+    return m_position;
+}

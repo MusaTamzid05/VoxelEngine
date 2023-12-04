@@ -17,6 +17,7 @@ SET(SOURCE_FILES
     src/texture_manager.cpp
     src/chunk.cpp
     src/light.cpp
+    src/material.cpp
     )
 
 

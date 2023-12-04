@@ -1,0 +1,42 @@
+#version 330 core
+
+out vec4 FragColor;
+
+in vec2 TexCoords;
+in vec3 Normal;
+in vec3 FragPos;
+
+struct Material {
+    sampler2D diffuse;
+    float shininess;
+    vec3 specular;
+};
+
+
+struct Light {
+    vec3 position;
+
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+};
+
+
+
+uniform int textureIndex;
+uniform sampler2D texture0;
+uniform sampler2D texture1;
+
+uniform Material material;
+uniform Light light;
+uniform vec3 viewPos;
+
+
+
+void main() {
+    
+    if(textureIndex == 0)
+        FragColor = texture(texture0, TexCoords);
+    else
+        FragColor = texture(texture1, TexCoords);
+}

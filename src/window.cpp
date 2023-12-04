@@ -61,6 +61,8 @@ Window::Window(const std::string& title):m_running(false) {
     m_chunk = new Chunk();
     m_light = new Light(glm::vec3(10.0f, 3.0f, 10.0f));
 
+    m_renderer->init_light(m_light);
+
 
 
 }

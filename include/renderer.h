@@ -2,11 +2,13 @@
 #define RENDERER_H
 
 struct Shader;
+struct Light;
 
 struct Renderer {
     Renderer();
     virtual ~Renderer();
 
+    void init_light(Light* light);
     void bind_block_render();
     void bind_light_render();
 
