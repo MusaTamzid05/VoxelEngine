@@ -98,7 +98,7 @@ Chunk::Chunk() {
         }
     }
 
-    // left right = z axis 
+    // left right = x axis 
     
     for(int y = 0; y < CHUNK_SIZE; y += 1) {
         for(int z = 0; z < CHUNK_SIZE; z += 1) {
