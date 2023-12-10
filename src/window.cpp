@@ -35,7 +35,7 @@ Window::Window(const std::string& title):m_running(false) {
     
 
     //Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
-    Camera::get_instance()->init(glm::vec3(16.0f, 5.3f, 25.0f));
+    Camera::get_instance()->init(glm::vec3(16.0f, 18.0f, 25.0f));
     first_mouse_move = true;
 
     std::string texture_path = "../resources/green_concrete_powder.png";
@@ -59,7 +59,7 @@ Window::Window(const std::string& title):m_running(false) {
 
     m_renderer = new Renderer();
     m_chunk = new Chunk();
-    m_light = new Light(glm::vec3(10.0f, 3.0f, 10.0f));
+    m_light = new Light(glm::vec3(10.0f, 20.0f, 10.0f));
 
     m_renderer->init_light(m_light);
 
