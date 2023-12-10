@@ -12,7 +12,7 @@ struct Chunk {
 
     void render(Shader* shader);
 
-    std::vector<std::vector<Block*>> m_blocks;
+    std::vector<Block*> m_blocks;
 
 
 
