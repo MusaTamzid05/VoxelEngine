@@ -11,6 +11,7 @@ struct Chunk {
     virtual ~Chunk();
 
     void render(Shader* shader);
+    Block* get_block(int x, int y, int z) const;
 
     std::vector<Block*> m_blocks;
 

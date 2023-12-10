@@ -7,7 +7,8 @@
 Block::Block(const glm::vec3& position, unsigned int texture_shader_index, bool active):
     m_position(position),
     m_texture_shader_index(texture_shader_index),
-    m_active(active)
+    active(active),
+    render_block(false)
 {
 
     }
@@ -18,7 +19,7 @@ Block::~Block() {
 
 
 void Block::render(Shader* shader) {
-    if(!m_active)
+    if(!render_block)
         return;
         
     glm::mat4 model = glm::mat4(1.0f);

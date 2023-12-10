@@ -7,8 +7,8 @@
 
 Chunk::Chunk() {
     for(int z = 0; z < CHUNK_SIZE; z += 1 ) {
-        for(int x = 0; x < CHUNK_SIZE; x += 1) {
-            for(int y = 0; y < CHUNK_SIZE; y += 1) {
+        for(int y = 0; y < CHUNK_SIZE; y += 1) {
+            for(int x = 0; x < CHUNK_SIZE; x += 1) {
                 bool active = false;
 
                 float x_ = ( x - ((float)CHUNK_SIZE / 2.0f));
@@ -33,6 +33,103 @@ Chunk::Chunk() {
         }
     }
 
+
+    // top bottom = y axis 
+    
+    for(int z = 0; z < CHUNK_SIZE; z += 1) {
+        for(int x = 0; x < CHUNK_SIZE; x += 1) {
+            bool active_block_found = false;
+
+            for(int y = 0; y < CHUNK_SIZE; y += 1) {
+                Block* block = get_block(x, y, z);
+
+                if(block->active) {
+                    block->render_block = true;
+                    active_block_found = true;
+                    break;
+                }
+            }
+
+            if(active_block_found) {
+                for(int y = CHUNK_SIZE - 1; y >= 0; y -= 1) {
+
+                    Block* block = get_block(x, y, z);
+
+                    if(block->active) {
+                        block->render_block = true;
+                        break;
+                    }
+
+                }
+
+            }
+        }
+    }
+
+
+    // forward backward = z axis 
+    
+    for(int y = 0; y < CHUNK_SIZE; y += 1) {
+        for(int x = 0; x < CHUNK_SIZE; x += 1) {
+            bool active_block_found = false;
+
+            for(int z = 0; z < CHUNK_SIZE; z += 1) {
+                Block* block = get_block(x, y, z);
+
+                if(block->active) {
+                    block->render_block = true;
+                    active_block_found = true;
+                    break;
+                }
+            }
+
+            if(active_block_found) {
+                for(int z = CHUNK_SIZE - 1; z >= 0; z -= 1) {
+
+                    Block* block = get_block(x, y, z);
+
+                    if(block->active) {
+                        block->render_block = true;
+                        break;
+                    }
+                }
+
+            }
+        }
+    }
+
+    // left right = z axis 
+    
+    for(int y = 0; y < CHUNK_SIZE; y += 1) {
+        for(int z = 0; z < CHUNK_SIZE; z += 1) {
+            bool active_block_found = false;
+
+            for(int x = 0; x < CHUNK_SIZE; x += 1) {
+                Block* block = get_block(x, y, z);
+
+                if(block->active) {
+                    block->render_block = true;
+                    active_block_found = true;
+                    break;
+                }
+            }
+
+            if(active_block_found) {
+                for(int x = CHUNK_SIZE - 1; x >= 0; x -= 1) {
+
+                    Block* block = get_block(x, y, z);
+
+                    if(block->active) {
+                        block->render_block = true;
+                        break;
+                    }
+                }
+
+            }
+        }
+    }
+
+
 }
 
 Chunk::~Chunk() {
@@ -42,4 +139,8 @@ void Chunk::render(Shader* shader) {
     for(Block* block : m_blocks)
         block->render(shader);
 
+}
+
+Block* Chunk::get_block(int x, int y, int z) const {
+    return m_blocks[x + CHUNK_SIZE * (y + CHUNK_SIZE * z)];
 }

@@ -12,7 +12,8 @@ struct Block {
     void render(Shader* shader);
     glm::vec3 m_position;
     unsigned m_texture_shader_index;
-    bool m_active;
+    bool active;
+    bool render_block;
 };
 
 
