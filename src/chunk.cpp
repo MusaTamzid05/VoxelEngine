@@ -7,8 +7,8 @@
 
 Chunk::Chunk() {
     for(int z = 0; z < CHUNK_SIZE; z += 1 ) {
-        for(int y = 0; y < CHUNK_SIZE; y += 1) {
-            for(int x = 0; x < CHUNK_SIZE; x += 1) {
+        for(int x = 0; x < CHUNK_SIZE; x += 1) {
+            for(int y = 0; y < CHUNK_SIZE; y += 1) {
                 bool active = false;
 
                 float x_ = ( x - ((float)CHUNK_SIZE / 2.0f));
@@ -142,5 +142,6 @@ void Chunk::render(Shader* shader) {
 }
 
 Block* Chunk::get_block(int x, int y, int z) const {
-    return m_blocks[x + CHUNK_SIZE * (y + CHUNK_SIZE * z)];
+    //return m_blocks[x + CHUNK_SIZE * (y + CHUNK_SIZE * z)];
+    return m_blocks[z * (CHUNK_SIZE * CHUNK_SIZE) + x * CHUNK_SIZE + y];
 }
