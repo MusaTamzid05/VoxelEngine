@@ -19,6 +19,8 @@ SET(SOURCE_FILES
     src/light.cpp
     src/material.cpp
     src/sphere_chunk.cpp
+    src/linear_interpolator.cpp
+    src/noise_chunk.cpp
     )
 
 
