@@ -135,14 +135,9 @@ Renderer::~Renderer() {
 
 void Renderer::init_light(Light* light) {
     m_block_shader->use();
-    m_block_shader->set_vec3("light.position", light->position);
-    std::cout << "gl Error =   " << glGetError() << "\n";
     m_block_shader->set_vec3("light.ambient", light->ambient);
-    std::cout << "gl Error =   " << glGetError() << "\n";
     m_block_shader->set_vec3("light.diffuse", light->diffuse);
-    std::cout << "gl Error =   " << glGetError() << "\n";
     m_block_shader->set_vec3("light.specular", light->specular);
-    std::cout << "gl Error =   " << glGetError() << "\n";
 
 
 }
@@ -152,7 +147,11 @@ void Renderer::bind_block_render() {
     m_block_shader->use();
     glm::mat4 view = Camera::get_instance()->get_view();
     m_block_shader->set_mat4("view", view);
-    m_block_shader->set_vec3("viewPos", Camera::get_instance()->get_position());
+
+    glm::vec3 camera_position = Camera::get_instance()->get_position();
+
+    m_block_shader->set_vec3("viewPos", camera_position );
+    m_block_shader->set_vec3("light.position", camera_position);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, grass_texture_id);
