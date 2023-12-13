@@ -30,7 +30,6 @@ SphereChunk::SphereChunk() {
 
 
 
-                m_blocks.push_back(new Block(glm::vec3(x, y, z), TextureManager::Type::Grass, active));
 
             }
 

@@ -26,4 +26,4 @@ SET(SOURCE_FILES
 add_executable(game ${SOURCE_FILES})
 
 include_directories(include)
-target_link_libraries(game sfml-graphics sfml-window sfml-system GL glut GLEW dl)
+target_link_libraries(game sfml-graphics sfml-window sfml-system GL glut GLEW noise dl)
