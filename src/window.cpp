@@ -4,6 +4,7 @@
 #include "consts.h"
 #include "renderer.h"
 #include "chunk.h"
+#include "sphere_chunk.h"
 
 #include "camera.h"
 #include "texture_manager.h"
@@ -58,7 +59,8 @@ Window::Window(const std::string& title):m_running(false) {
         std::cout << texture_path << " loaded\n";
 
     m_renderer = new Renderer();
-    m_chunk = new Chunk();
+    m_chunk = new SphereChunk();
+    m_chunk->init_render();
     m_light = new Light(glm::vec3(10.0f, 20.0f, 10.0f));
 
     m_renderer->init_light(m_light);

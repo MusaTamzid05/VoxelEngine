@@ -1,4 +1,5 @@
 #include "window.h"
+#include <libnoise/noise.h>
 
 
 int main(int argc, char** argv) {

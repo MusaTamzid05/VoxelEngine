@@ -18,6 +18,7 @@ SET(SOURCE_FILES
     src/chunk.cpp
     src/light.cpp
     src/material.cpp
+    src/sphere_chunk.cpp
     )
 
 

@@ -6,7 +6,7 @@
 struct Shader;
 
 struct Block {
-    Block(const glm::vec3& position, unsigned int texture_shader_index, bool active);
+    Block(const glm::vec3& position, unsigned int texture_shader_index, bool active=false);
     virtual ~Block();
 
     void render(Shader* shader);

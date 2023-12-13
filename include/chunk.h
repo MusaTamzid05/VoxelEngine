@@ -10,6 +10,8 @@ struct Chunk {
     Chunk();
     virtual ~Chunk();
 
+    void init_render();
+
     void render(Shader* shader);
     Block* get_block(int x, int y, int z) const;
 
