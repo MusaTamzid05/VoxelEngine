@@ -34,6 +34,10 @@ Window::Window(const std::string& title):m_running(false) {
 
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+   glFrontFace(GL_CCW);
+
     
 
     //Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
