@@ -9,11 +9,11 @@
 SphereChunk::SphereChunk() {
     for(int z = 0; z < CHUNK_SIZE; z += 1 ) {
         for(int x = 0; x < CHUNK_SIZE; x += 1) {
-            for(int y = 0; y < CHUNK_SIZE; y += 1) {
+            for(int y = 0; y < CHUNK_HEIGHT; y += 1) {
                 bool active = false;
 
                 float x_ = ( x - ((float)CHUNK_SIZE / 2.0f));
-                float y_ = ( y - ((float)CHUNK_SIZE / 2.0f));
+                float y_ = ( y - ((float)CHUNK_HEIGHT/ 2.0f));
                 float z_ = ( z - ((float)CHUNK_SIZE / 2.0f));
 
                 float lhs = (x_ * x_) + (y_ * y_) + (z_ * z_);
