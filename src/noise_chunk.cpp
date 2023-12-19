@@ -5,6 +5,7 @@
 #include "linear_interpolator.h"
 
 #include <libnoise/noise.h>
+#include <iostream>
 
 NoiseChunk::NoiseChunk() {
     noise::module::Perlin noise_module;
@@ -20,8 +21,9 @@ NoiseChunk::NoiseChunk() {
             float height = interpolator.map(current_noise);
 
             for(int y = 0; y < height; y += 1)  {
-                Block* block = get_block(x, y, z);
-                block->active = true;
+                Block block = get_block(x, y, z);
+                block.active = true;
+                set_block(x, y, z, block);
 
             }
 

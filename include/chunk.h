@@ -13,9 +13,11 @@ struct Chunk {
     void init_render();
 
     void render(Shader* shader);
-    Block* get_block(int x, int y, int z) const;
 
-    std::vector<Block*> m_blocks;
+    void set_block(int x, int y, int z, const  Block& block);
+    Block get_block(int x, int y, int z) const;
+
+    std::vector<Block> m_blocks;
 
 
 

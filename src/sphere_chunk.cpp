@@ -24,8 +24,9 @@ SphereChunk::SphereChunk() {
                 if(lhs <= rhs)
                     active = true;
 
-                Block* block = get_block(x, y, z);
-                block->active = active;
+                Block block = get_block(x, y, z);
+                block.active = active;
+                set_block(x, y, z, block);
 
 
 

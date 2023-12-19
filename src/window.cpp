@@ -36,7 +36,7 @@ Window::Window(const std::string& title):m_running(false) {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
-   glFrontFace(GL_CCW);
+    glFrontFace(GL_CCW);
 
     
 
@@ -64,7 +64,7 @@ Window::Window(const std::string& title):m_running(false) {
         std::cout << texture_path << " loaded\n";
 
     m_renderer = new Renderer();
-    m_chunk = new NoiseChunk();
+    m_chunk = new SphereChunk();
     m_chunk->init_render();
     m_light = new Light(glm::vec3(10.0f, 20.0f, 10.0f));
 
