@@ -40,7 +40,6 @@ void Chunk::init_render() {
                 Block block = get_block(x, y, z);
 
                 if(block.active) {
-                    block.render_block = true;
                     set_block(x, y, z , block);
                     active_block_found = true;
                     add_models(glm::vec3(x, y, z));
@@ -54,7 +53,6 @@ void Chunk::init_render() {
                     Block block = get_block(x, y, z);
 
                     if(block.active) {
-                        block.render_block = true;
                         set_block(x, y, z , block);
                         add_models(glm::vec3(x, y, z));
                         break;
@@ -77,7 +75,6 @@ void Chunk::init_render() {
                 Block block = get_block(x, y, z);
 
                 if(block.active) {
-                    block.render_block = true;
                     set_block(x, y, z , block);
                     active_block_found = true;
                     add_models(glm::vec3(x, y, z));
@@ -91,7 +88,6 @@ void Chunk::init_render() {
                     Block  block = get_block(x, y, z);
 
                     if(block.active) {
-                        block.render_block = true;
                         set_block(x, y, z , block);
                         add_models(glm::vec3(x, y, z));
                         break;
@@ -112,7 +108,6 @@ void Chunk::init_render() {
                 Block block = get_block(x, y, z);
 
                 if(block.active) {
-                    block.render_block = true;
                     set_block(x, y, z , block);
                     active_block_found = true;
                     add_models(glm::vec3(x, y, z));
@@ -126,7 +121,6 @@ void Chunk::init_render() {
                     Block block = get_block(x, y, z);
 
                     if(block.active) {
-                        block.render_block = true;
                         set_block(x, y, z , block);
                         add_models(glm::vec3(x, y, z));
                         break;
