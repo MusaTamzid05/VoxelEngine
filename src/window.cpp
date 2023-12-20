@@ -66,6 +66,7 @@ Window::Window(const std::string& title):m_running(false) {
     m_renderer = new Renderer();
     m_chunk = new NoiseChunk();
     m_chunk->init_render();
+    m_renderer->init_instance_vbo(m_chunk->current_render_models);
     m_light = new Light(glm::vec3(10.0f, 20.0f, 10.0f));
 
     m_renderer->init_light(m_light);
@@ -184,7 +185,7 @@ void Window::render() {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
     m_renderer->bind_block_render();
-    m_chunk->render(m_renderer->m_block_shader);
+    m_chunk->render(m_renderer->m_chunk_shader);
 
     m_renderer->bind_light_render();
     m_light->render(m_renderer->m_light_shader);

@@ -18,6 +18,7 @@ Block::~Block() {
 }
 
 
+/*
 void Block::render(Shader* shader) {
     if(!render_block)
         return;
@@ -35,3 +36,4 @@ void Block::render(Shader* shader) {
 }
 
 
+*/

@@ -2,15 +2,18 @@
 #include "consts.h"
 #include "block.h"
 #include "shader.h"
+#include "headers.h"
 #include "texture_manager.h"
 #include <cmath>
+#include <iostream>
+#include <glm/gtc/matrix_transform.hpp>
 
 Chunk::Chunk() {
 
     for(int z = 0; z < CHUNK_SIZE; z += 1 ) {
         for(int x = 0; x < CHUNK_SIZE; x += 1) {
             for(int y = 0; y < CHUNK_HEIGHT; y += 1) {
-                m_blocks.push_back(Block(glm::vec3(x, y, z), TextureManager::Type::Grass));
+                m_blocks.push_back(Block(glm::vec3(0.0f, 0.0f, 0.0f), TextureManager::Type::Grass));
 
             }
 
@@ -25,6 +28,8 @@ Chunk::~Chunk() {
 }
 
 void Chunk::init_render() {
+    current_render_models.clear();
+
     // top bottom = y axis 
     
     for(int z = 0; z < CHUNK_SIZE; z += 1) {
@@ -38,6 +43,7 @@ void Chunk::init_render() {
                     block.render_block = true;
                     set_block(x, y, z , block);
                     active_block_found = true;
+                    add_models(glm::vec3(x, y, z));
                     break;
                 }
             }
@@ -50,6 +56,7 @@ void Chunk::init_render() {
                     if(block.active) {
                         block.render_block = true;
                         set_block(x, y, z , block);
+                        add_models(glm::vec3(x, y, z));
                         break;
                     }
 
@@ -73,6 +80,7 @@ void Chunk::init_render() {
                     block.render_block = true;
                     set_block(x, y, z , block);
                     active_block_found = true;
+                    add_models(glm::vec3(x, y, z));
                     break;
                 }
             }
@@ -85,6 +93,7 @@ void Chunk::init_render() {
                     if(block.active) {
                         block.render_block = true;
                         set_block(x, y, z , block);
+                        add_models(glm::vec3(x, y, z));
                         break;
                     }
                 }
@@ -106,6 +115,7 @@ void Chunk::init_render() {
                     block.render_block = true;
                     set_block(x, y, z , block);
                     active_block_found = true;
+                    add_models(glm::vec3(x, y, z));
                     break;
                 }
             }
@@ -118,6 +128,7 @@ void Chunk::init_render() {
                     if(block.active) {
                         block.render_block = true;
                         set_block(x, y, z , block);
+                        add_models(glm::vec3(x, y, z));
                         break;
                     }
                 }
@@ -129,9 +140,24 @@ void Chunk::init_render() {
 
 }
 
+void Chunk::add_models(const glm::vec3& position) {
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, position);
+
+    current_render_models.push_back(model);
+
+}
+
+
 void Chunk::render(Shader* shader) {
-    for(Block block : m_blocks)
-        block.render(shader);
+    glDrawArraysInstanced(
+            GL_TRIANGLES,
+            0,
+            36,
+            current_render_models.size()
+            );
+    //for(Block block : m_blocks)
+        //block.render(shader);
 
 }
 

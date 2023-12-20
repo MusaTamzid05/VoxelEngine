@@ -2,6 +2,7 @@
 #define CHUNK_H
 
 #include <vector>
+#include <glm/glm.hpp>
 
 struct Block;
 struct Shader;
@@ -11,6 +12,7 @@ struct Chunk {
     virtual ~Chunk();
 
     void init_render();
+    void add_models(const glm::vec3& position);
 
     void render(Shader* shader);
 
@@ -18,6 +20,7 @@ struct Chunk {
     Block get_block(int x, int y, int z) const;
 
     std::vector<Block> m_blocks;
+    std::vector<glm::mat4> current_render_models;
 
 
 
