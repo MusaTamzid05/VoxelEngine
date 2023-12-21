@@ -12,6 +12,7 @@ struct Chunk {
     virtual ~Chunk();
 
     void init_render();
+    bool is_block_hidden(const Block& block) const;
     void add_models(const glm::vec3& position);
 
     void render(Shader* shader);

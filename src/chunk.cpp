@@ -30,107 +30,110 @@ Chunk::~Chunk() {
 void Chunk::init_render() {
     current_render_models.clear();
 
-    // top bottom = y axis 
-    
-    for(int z = 0; z < CHUNK_SIZE; z += 1) {
+    for(int z = 0; z < CHUNK_SIZE; z += 1 ) {
         for(int x = 0; x < CHUNK_SIZE; x += 1) {
-            bool active_block_found = false;
-
             for(int y = 0; y < CHUNK_HEIGHT; y += 1) {
                 Block block = get_block(x, y, z);
 
-                if(block.active) {
-                    set_block(x, y, z , block);
-                    active_block_found = true;
-                    add_models(glm::vec3(x, y, z));
-                    break;
-                }
-            }
+                if(!block.active)
+                    continue;
 
-            if(active_block_found) {
-                for(int y = CHUNK_HEIGHT - 1; y >= 0; y -= 1) {
+                if(is_block_hidden(block))
+                    continue;
 
-                    Block block = get_block(x, y, z);
+                add_models(block.m_position);
 
-                    if(block.active) {
-                        set_block(x, y, z , block);
-                        add_models(glm::vec3(x, y, z));
-                        break;
-                    }
-
-                }
 
             }
+
         }
     }
 
 
-    // forward backward = z axis 
+
+}
+
+bool Chunk::is_block_hidden(const Block& block) const {
+    int side_block_count = 0;
+
+    int x = block.m_position.x;
+    int y = block.m_position.y;
+    int z = block.m_position.z;
+
+    int side_x = x;
+    int side_y = y;
+    int side_z = z;
+
+
+
+
+    // x axis
     
-    for(int y = 0; y < CHUNK_HEIGHT; y += 1) {
-        for(int x = 0; x < CHUNK_SIZE; x += 1) {
-            bool active_block_found = false;
 
-            for(int z = 0; z < CHUNK_SIZE; z += 1) {
-                Block block = get_block(x, y, z);
-
-                if(block.active) {
-                    set_block(x, y, z , block);
-                    active_block_found = true;
-                    add_models(glm::vec3(x, y, z));
-                    break;
-                }
-            }
-
-            if(active_block_found) {
-                for(int z = CHUNK_SIZE - 1; z >= 0; z -= 1) {
-
-                    Block  block = get_block(x, y, z);
-
-                    if(block.active) {
-                        set_block(x, y, z , block);
-                        add_models(glm::vec3(x, y, z));
-                        break;
-                    }
-                }
-
-            }
-        }
-    }
-
-    // left right = x axis 
+    side_x = x - 1;
     
-    for(int y = 0; y < CHUNK_HEIGHT; y += 1) {
-        for(int z = 0; z < CHUNK_SIZE; z += 1) {
-            bool active_block_found = false;
-
-            for(int x = 0; x < CHUNK_SIZE; x += 1) {
-                Block block = get_block(x, y, z);
-
-                if(block.active) {
-                    set_block(x, y, z , block);
-                    active_block_found = true;
-                    add_models(glm::vec3(x, y, z));
-                    break;
-                }
-            }
-
-            if(active_block_found) {
-                for(int x = CHUNK_SIZE - 1; x >= 0; x -= 1) {
-
-                    Block block = get_block(x, y, z);
-
-                    if(block.active) {
-                        set_block(x, y, z , block);
-                        add_models(glm::vec3(x, y, z));
-                        break;
-                    }
-                }
-
-            }
-        }
+    if(side_x >= 0) {
+        Block side_block = get_block(side_x, side_y, side_z);
+        if(side_block.active)
+            side_block_count += 1;
     }
 
+    side_x = x + 1;
+
+    if(side_x < CHUNK_SIZE) {
+        Block side_block = get_block(side_x, side_y, side_z);
+        if(side_block.active)
+            side_block_count += 1;
+    }
+
+    side_x = x;
+
+    // z axis
+
+
+    side_z = z - 1;
+    
+    if(side_z >= 0) {
+        Block side_block = get_block(side_x, side_y, side_z);
+        if(side_block.active)
+            side_block_count += 1;
+    }
+
+    side_z = z + 1;
+
+    if(side_x < CHUNK_SIZE) {
+        Block side_block = get_block(side_x, side_y, side_z);
+        if(side_block.active)
+            side_block_count += 1;
+    }
+
+    side_z = z;
+
+
+    // y axis
+
+
+    side_y = y - 1;
+    
+    if(side_y >= 0) {
+        Block side_block = get_block(side_x, side_y, side_z);
+        if(side_block.active)
+            side_block_count += 1;
+    }
+
+    side_y = y + 1;
+
+    if(side_x < CHUNK_HEIGHT) {
+        Block side_block = get_block(side_x, side_y, side_z);
+        if(side_block.active)
+            side_block_count += 1;
+    }
+
+    side_y = y;
+
+
+
+    return side_block_count == 6;
 
 }
 
