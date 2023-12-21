@@ -178,7 +178,6 @@ void Window::render() {
     if(!Camera::get_instance()->camera_moved)
         return;
 
-    
 
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
