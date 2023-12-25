@@ -21,6 +21,7 @@ SET(SOURCE_FILES
     src/sphere_chunk.cpp
     src/linear_interpolator.cpp
     src/noise_chunk.cpp
+    src/chunk_manager.cpp
     )
 
 

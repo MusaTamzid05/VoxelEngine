@@ -1,34 +1,35 @@
 #include "noise_chunk.h"
 #include "consts.h"
 #include "block.h"
-#include "texture_manager.h"
-#include "linear_interpolator.h"
+#include "chunk_manager.h"
 
-#include <libnoise/noise.h>
-#include <iostream>
 
-NoiseChunk::NoiseChunk() {
-    noise::module::Perlin noise_module;
-    LinearInterpolator interpolator(-1.0f, 1.0f, 1.0f, 8.0f);
+NoiseChunk::NoiseChunk(ChunkManager* chunk_manager,
+        const glm::vec3& start_position) {
+
+    int z_offset = start_position.z;
+    int x_offset = start_position.x;
 
     for(int z = 0; z < CHUNK_SIZE; z += 1 ) {
         for(int x = 0; x < CHUNK_SIZE; x += 1) {
 
-            double x_ = ((double)x /  (double)CHUNK_SIZE);
-            double z_ = ((double)z /  (double)CHUNK_SIZE);
+            float height = chunk_manager->get_height(x_offset, z_offset);
 
-            float current_noise = noise_module.GetValue(x_, 0.0, z_);
-            float height = interpolator.map(current_noise);
-
-            for(int y = 0; y < height; y += 1)  {
+            for(int y = 0; y < CHUNK_HEIGHT; y += 1)  {
                 Block block = get_block(x, y, z);
-                block.active = true;
+                block.m_position = glm::vec3(x_offset, y, z_offset);
+
+                block.active = y < height ? true : false;
                 set_block(x, y, z, block);
 
             }
 
+            x_offset  += 1;
 
         }
+
+        z_offset += 1;
+        x_offset = start_position.x;
     }
 
 }

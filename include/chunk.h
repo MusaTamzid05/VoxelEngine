@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <glm/glm.hpp>
+#include "block.h"
 
-struct Block;
 struct Shader;
 
 struct Chunk {
@@ -15,7 +15,7 @@ struct Chunk {
     bool is_block_hidden(const Block& block) const;
     void add_models(const glm::vec3& position);
 
-    void render(Shader* shader);
+    //void render(Shader* shader);
 
     void set_block(int x, int y, int z, const  Block& block);
     Block get_block(int x, int y, int z) const;

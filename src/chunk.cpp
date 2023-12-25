@@ -146,6 +146,7 @@ void Chunk::add_models(const glm::vec3& position) {
 }
 
 
+/*
 void Chunk::render(Shader* shader) {
     glDrawArraysInstanced(
             GL_TRIANGLES,
@@ -157,6 +158,7 @@ void Chunk::render(Shader* shader) {
         //block.render(shader);
 
 }
+*/
 
 void Chunk::set_block(int x, int y, int z, const Block& block) {
     m_blocks[z * (CHUNK_SIZE * CHUNK_HEIGHT) + x * CHUNK_HEIGHT + y] = block;

@@ -9,7 +9,7 @@ namespace sf {
 #include <string>
 
 struct Renderer;
-struct Chunk;
+struct ChunkManager;
 struct Light;
 
 struct Window {
@@ -31,7 +31,7 @@ struct Window {
     float last_mouse_y;
 
     Renderer* m_renderer;
-    Chunk* m_chunk;
+    ChunkManager* chunk_manager;
     Light* m_light;
 
 
