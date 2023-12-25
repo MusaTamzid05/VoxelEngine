@@ -10,8 +10,8 @@ Camera::Camera() {
     m_world_up = glm::vec3(0.0f, 1.0f, 0.0f);
     m_front = glm::vec3(0.0f, 0.0f, -1.0f);
     m_up = glm::vec3(0.0f, 0.0f, 0.0f);
-    m_yaw = -120.0f;
-    m_pitch = -10.0f;
+    m_yaw = -293.0f;
+    m_pitch = -16.0f;
     zoom = 45.0f;
     m_speed = 25.f;
     m_sensitivity = 0.1f;

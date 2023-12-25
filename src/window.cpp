@@ -42,7 +42,7 @@ Window::Window(const std::string& title):m_running(false) {
     
 
     //Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
-    Camera::get_instance()->init(glm::vec3(16.0f, 18.0f, 25.0f));
+    Camera::get_instance()->init(glm::vec3(2.423f, 23.675f, -6.98538f));
     first_mouse_move = true;
 
     std::string texture_path = "../resources/green_concrete_powder.png";
