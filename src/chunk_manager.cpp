@@ -5,6 +5,7 @@
 #include "noise_chunk.h"
 #include "renderer.h"
 #include <libnoise/noise.h>
+#include <iostream>
 
 ChunkManager::ChunkManager(int chunk_count) {
     total_blocks_count = CHUNK_SIZE * chunk_count;
@@ -29,6 +30,8 @@ ChunkManager::ChunkManager(int chunk_count) {
         }
     }
 
+
+
     glm::vec3 current_position = glm::vec3(0.0f);
 
     for(int i = 0; i < chunk_count; i += 1) {
@@ -45,6 +48,7 @@ ChunkManager::ChunkManager(int chunk_count) {
 
 
     }
+
 
 }
 

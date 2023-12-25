@@ -2,6 +2,7 @@
 #include "consts.h"
 #include "block.h"
 #include "chunk_manager.h"
+#include <iostream>
 
 
 NoiseChunk::NoiseChunk(ChunkManager* chunk_manager,
@@ -17,7 +18,7 @@ NoiseChunk::NoiseChunk(ChunkManager* chunk_manager,
 
             for(int y = 0; y < CHUNK_HEIGHT; y += 1)  {
                 Block block = get_block(x, y, z);
-                block.m_position = glm::vec3(x_offset, y, z_offset);
+                block.world_position = glm::vec3(x_offset, y, z_offset);
 
                 block.active = y < height ? true : false;
                 set_block(x, y, z, block);

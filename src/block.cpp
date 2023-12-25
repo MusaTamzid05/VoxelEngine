@@ -5,7 +5,8 @@
 
     
 Block::Block(const glm::vec3& position, unsigned int texture_shader_index, bool active):
-    m_position(position),
+    world_position(position),
+    local_position(position),
     m_texture_shader_index(texture_shader_index),
     active(active) {
 

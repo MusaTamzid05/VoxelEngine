@@ -41,7 +41,7 @@ void Chunk::init_render() {
                 if(is_block_hidden(block))
                     continue;
 
-                add_models(block.m_position);
+                add_models(block.world_position);
 
 
             }
@@ -56,9 +56,9 @@ void Chunk::init_render() {
 bool Chunk::is_block_hidden(const Block& block) const {
     int side_block_count = 0;
 
-    int x = block.m_position.x;
-    int y = block.m_position.y;
-    int z = block.m_position.z;
+    int x = block.local_position.x;
+    int y = block.local_position.y;
+    int z = block.local_position.z;
 
     int side_x = x;
     int side_y = y;
