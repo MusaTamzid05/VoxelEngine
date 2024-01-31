@@ -12,7 +12,7 @@ Renderer::Renderer():
     m_block_VAO(0),
     m_block_VBO(0) {
 
-        m_chunk_shader = new Shader("../shaders/chunk.vs", "../shaders/chunk.fs");
+        m_chunk_shader = new Shader("../shaders/atlas.vs", "../shaders/atlas.fs");
         m_light_shader = new Shader("../shaders/light.vs", "../shaders/light.fs");
 
 		std::vector<float> vertices = {
@@ -109,6 +109,8 @@ Renderer::Renderer():
         m_chunk_shader->set_float("material.shininess", material.shininess);
         m_chunk_shader->set_vec3("material.specular", material.specular);
 
+        m_chunk_shader->set_int("numRows", TextureAtlas::get_instance()->num_rows);
+
 
 
 
@@ -116,6 +118,7 @@ Renderer::Renderer():
         m_light_shader->set_mat4("projection", projection);
 
         texture_atlas_id = TextureAtlas::get_instance()->id;
+
 
 
 
