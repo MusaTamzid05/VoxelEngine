@@ -25,8 +25,7 @@ struct Renderer {
     Shader* m_chunk_shader;
     Shader* m_light_shader;
 
-    unsigned int grass_texture_id;
-    unsigned int farmland_texture_id;
+    unsigned int texture_atlas_id;
 
 
 

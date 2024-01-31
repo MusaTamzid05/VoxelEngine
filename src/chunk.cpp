@@ -3,7 +3,6 @@
 #include "block.h"
 #include "shader.h"
 #include "headers.h"
-#include "texture_manager.h"
 #include <cmath>
 #include <iostream>
 #include <glm/gtc/matrix_transform.hpp>
@@ -13,7 +12,7 @@ Chunk::Chunk() {
     for(int z = 0; z < CHUNK_SIZE; z += 1 ) {
         for(int x = 0; x < CHUNK_SIZE; x += 1) {
             for(int y = 0; y < CHUNK_HEIGHT; y += 1) {
-                m_blocks.push_back(Block(glm::vec3(x, y, z), TextureManager::Type::Grass)); // done off the video, need to save position for future
+                m_blocks.push_back(Block(glm::vec3(x, y, z))); // done off the video, need to save position for future
 
             }
 

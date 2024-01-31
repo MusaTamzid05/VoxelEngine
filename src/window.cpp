@@ -9,7 +9,7 @@
 #include "chunk_manager.h"
 
 #include "camera.h"
-#include "texture_manager.h"
+#include "texture_atlas.h"
 #include "light.h"
 
 
@@ -45,24 +45,19 @@ Window::Window(const std::string& title):m_running(false) {
     Camera::get_instance()->init(glm::vec3(2.423f, 23.675f, -6.98538f));
     first_mouse_move = true;
 
-    std::string texture_path = "../resources/green_concrete_powder.png";
+    std::string texture_path = "../resources/atlas.jpg";
 
-    if(!TextureManager::get_instance()->add(
-            TextureManager::Type::Grass, 
+    if(!TextureAtlas::get_instance()->load(
             texture_path))
-        std::cerr << "Could not load " << texture_path << "\n";
+        std::cerr << "Could not load texture atlas " << texture_path << "\n";
     else
-        std::cout << texture_path << " loaded\n";
+        std::cout << "Texture atlas loaded\n";
+
+    TextureAtlas::get_instance()->num_rows = 2;
+    TextureAtlas::get_instance()->total_textures = 4;
 
 
-    texture_path = "../resources/farmland.png";
 
-    if(!TextureManager::get_instance()->add(
-            TextureManager::Type::Farmland, 
-            texture_path))
-        std::cerr << "Could not load " << texture_path << "\n";
-    else
-        std::cout << texture_path << " loaded\n";
 
     m_renderer = new Renderer();
 

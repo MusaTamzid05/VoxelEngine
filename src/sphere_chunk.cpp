@@ -1,7 +1,6 @@
 #include "sphere_chunk.h"
 #include "consts.h"
 #include "block.h"
-#include "texture_manager.h"
 #include <cmath>
 
 

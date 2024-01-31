@@ -4,7 +4,7 @@
 #include "camera.h"
 #include "material.h"
 #include "light.h"
-#include "texture_manager.h"
+#include "texture_atlas.h"
 #include <vector>
 #include <iostream>
 
@@ -111,23 +111,11 @@ Renderer::Renderer():
 
 
 
-        for(auto shader_data :  TextureManager::get_instance()->shader_map) {
-            unsigned int index = shader_data.second;
-            std::string type_name = "texture" + std::to_string(index);
-            m_chunk_shader->set_int(type_name, index);
-        }
-
-        // The block textures
-
-        grass_texture_id = TextureManager::get_instance()->get_texture(
-                TextureManager::Type::Grass
-                );
-        farmland_texture_id = TextureManager::get_instance()->get_texture(
-                TextureManager::Type::Farmland
-                );
 
         m_light_shader->use();
         m_light_shader->set_mat4("projection", projection);
+
+        texture_atlas_id = TextureAtlas::get_instance()->id;
 
 
 
@@ -199,10 +187,8 @@ void Renderer::bind_block_render() {
     m_chunk_shader->set_vec3("light.position", camera_position);
 
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, grass_texture_id);
+    glBindTexture(GL_TEXTURE_2D, texture_atlas_id);
 
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, farmland_texture_id);
 
     glBindVertexArray(m_block_VAO);
 

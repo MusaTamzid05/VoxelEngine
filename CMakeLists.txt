@@ -14,7 +14,7 @@ SET(SOURCE_FILES
     src/camera.cpp
     src/renderer.cpp
     src/block.cpp
-    src/texture_manager.cpp
+    src/texture_atlas.cpp
     src/chunk.cpp
     src/light.cpp
     src/material.cpp
