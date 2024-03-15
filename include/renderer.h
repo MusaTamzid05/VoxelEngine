@@ -12,7 +12,10 @@ struct Renderer {
     virtual ~Renderer();
 
     void init_light(Light* light);
-    void init_instance_vbo(const std::vector<glm::mat4>& models);
+    void init_instance_vbo(
+            const std::vector<glm::mat4>& models,
+            const std::vector<glm::vec3>& positions
+            );
     void bind_block_render();
     void bind_light_render();
 
@@ -20,7 +23,8 @@ struct Renderer {
     unsigned int m_light_VAO;
 
     unsigned int m_block_VBO;
-    unsigned int m_instance_pos_VBO;
+    unsigned int m_instance_model_VBO;
+    unsigned int m_instance_position_VBO;
 
     Shader* m_chunk_shader;
     Shader* m_light_shader;

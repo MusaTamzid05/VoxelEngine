@@ -79,10 +79,8 @@ void ChunkManager::update_instance_vbo(Renderer* renderer) {
             current_positions.push_back(position);;
     }
 
-    std::cout << "models " << current_render_models.size() << "\n";
-    std::cout << "positions " << current_positions.size() << "\n";
 
-    renderer->init_instance_vbo(current_render_models);
+    renderer->init_instance_vbo(current_render_models, current_positions);
 
 
 }

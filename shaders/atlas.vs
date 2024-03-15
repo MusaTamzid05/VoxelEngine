@@ -3,7 +3,8 @@
 layout (location=0) in vec3 position;
 layout (location=1) in vec3 normals;
 layout (location=2) in vec2 textureCoords;
-layout (location=3) in mat4 instance_model;
+layout (location=3) in mat4 instanceModel;
+layout (location=7) in vec3 worldPosition;
 
 out vec2 TexCoords;
 out vec3 Normal;
@@ -29,13 +30,13 @@ vec2 get_texture_offset(int textureIndex) {
 }
 
 void main() {
-    FragPos = vec3(instance_model* vec4(position, 1.0f));
-    Normal = mat3(transpose(inverse(instance_model))) * normals;
-    gl_Position = projection * view * instance_model * vec4(position, 1.0);
+    FragPos = vec3(instanceModel* vec4(position, 1.0f));
+    Normal = mat3(transpose(inverse(instanceModel))) * normals;
+    gl_Position = projection * view * instanceModel * vec4(position, 1.0);
 
     int textureIndex = 0;
 
-    float height = FragPos.y;
+    float height = worldPosition.y;
 
     if(height < 4.0)
         textureIndex = 0;

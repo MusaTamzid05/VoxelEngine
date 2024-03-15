@@ -140,11 +140,16 @@ void Renderer::init_light(Light* light) {
 }
 
 
-void Renderer::init_instance_vbo(const std::vector<glm::mat4>& models) {
+void Renderer::init_instance_vbo(
+        const std::vector<glm::mat4>& models,
+        const std::vector<glm::vec3>& positions) {
+
+
+
     glBindVertexArray(m_block_VAO);
 
-    glGenBuffers(1, &m_instance_pos_VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, m_instance_pos_VBO);
+    glGenBuffers(1, &m_instance_model_VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_instance_model_VBO);
 
     glBufferData(
             GL_ARRAY_BUFFER,
@@ -171,6 +176,25 @@ void Renderer::init_instance_vbo(const std::vector<glm::mat4>& models) {
     glVertexAttribDivisor(4, 1);
     glVertexAttribDivisor(5, 1);
     glVertexAttribDivisor(6, 1);
+
+
+
+
+    glGenBuffers(1, &m_instance_position_VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_instance_position_VBO);
+
+    glBufferData(
+            GL_ARRAY_BUFFER,
+            positions.size() * sizeof(glm::vec3),
+            positions.data(),
+            GL_STATIC_DRAW
+            );
+
+
+    glVertexAttribPointer(7, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
+    glEnableVertexAttribArray(7);
+
+    glVertexAttribDivisor(7, 1);
 
 
 
