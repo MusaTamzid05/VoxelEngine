@@ -22,6 +22,7 @@ struct Chunk {
 
     std::vector<Block> m_blocks;
     std::vector<glm::mat4> current_render_models;
+    std::vector<glm::vec3> current_positions;
 
 
 

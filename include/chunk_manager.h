@@ -20,6 +20,7 @@ struct ChunkManager {
     std::vector<float> noise_data;
     std::vector<Chunk> chunks;
     std::vector<glm::mat4> current_render_models;
+    std::vector<glm::vec3> current_positions;
 
     int total_blocks_count;
 

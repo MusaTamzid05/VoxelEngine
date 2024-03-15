@@ -141,6 +141,7 @@ void Chunk::add_models(const glm::vec3& position) {
     model = glm::translate(model, position);
 
     current_render_models.push_back(model);
+    current_positions.push_back(position);
 
 }
 
